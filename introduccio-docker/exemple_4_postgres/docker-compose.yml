@@ -1,0 +1,13 @@
+version: '3.1'
+
+services:
+  postgres:
+    build: ./build
+    environment:
+      POSTGRES_PASSWORD: patata123
+      TZ: "Europe/Madrid"
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./data:/var/lib/postgresql/data #si el path absoluto té espais en blanc, dona problemes ;(
+    ports:
+      - "5432:5432"

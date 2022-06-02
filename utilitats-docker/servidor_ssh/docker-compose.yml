@@ -1,0 +1,33 @@
+version: '3.1'
+
+services:
+  g10:
+    build: ./build
+    hostname: g10
+    environment:
+      ROOT_PASSWORD: STRONG_PASSWORD
+      SSH_PORT: 10022
+    ports:
+      - 10022:10022
+      - 10443:10443
+      - 10080:10080
+  g11:
+    build: ./build
+    hostname: g11
+    environment:
+      ROOT_PASSWORD: STRONG_PASSWORD
+      SSH_PORT: 11022
+    ports:
+      - 11022:11022
+      - 11443:11443
+      - 11080:11080
+  
+
+# ufw allow 10022/tcp comment 'g10_ssh' 
+# ufw allow 10443/tcp comment 'g10_https'
+# ufw allow 10080/tcp comment 'g10_http'
+
+
+# ufw allow 11022/tcp comment 'g11_ssh' 
+# ufw allow 11443/tcp comment 'g11_https'
+# ufw allow 11080/tcp comment 'g11_http'

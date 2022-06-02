@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: joedb
+      MYSQL_USER: joe
+      MYSQL_PASSWORD: joe123
+      MYSQL_ROOT_PASSWORD: root123
+    volumes:
+      - ./data/mysql:/var/lib/mysql #si el path absoluto té espais en blanc, dona problemes ;(
+    ports:
+      - "3306:3306"

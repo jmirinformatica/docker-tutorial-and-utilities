@@ -1,0 +1,8 @@
+version: '3.1'
+
+services:
+  contact:
+    build: ./build
+    hostname: contact
+    ports:
+      - 9982:9982

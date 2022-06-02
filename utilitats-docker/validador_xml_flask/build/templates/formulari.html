@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="cat">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador DTD/XSD</title>
+    <script language="javascript" type="text/javascript" src="https://codemirror.net/lib/codemirror.js"></script>
+    <script language="javascript" type="text/javascript" src="https://codemirror.net/mode/xml/xml.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://codemirror.net/lib/codemirror.css"></link>
+    <link rel="stylesheet" type="text/css" href="https://codemirror.net/theme/eclipse.css"></link>
+    <style>
+
+        :root {
+            --init-bg-color:    #63c0df;
+            --success-bg-color: #009944;
+            --warning-bg-color: #f0541e;
+            --error-bg-color:  	#cf000f;
+
+            --bg-color: var(--{{state.name()}}-bg-color)
+        }
+
+        label {
+            font-size: 20px;
+        }
+
+        .textarea {
+            width: 50%;
+            min-width: 400px;
+            max-width: 800px;
+            float: left;
+        }
+
+        #submit {
+            clear: both;
+        }
+
+        #submit input {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background-color: #059;
+            color: #BEF;
+            border: none;
+            padding: 16px 32px;
+            text-decoration: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .msg {
+            padding: 2px;
+            line-height: 2em;
+            font-weight: bold;
+            border-radius: 3px 3px 3px 3px;
+            background-color: whitesmoke;
+            color: var(--bg-color);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            margin:10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Validador DTD/XSD</h1>
+    <div id="msg">
+    {% for msg in state.msgs(): %}
+        <p class="msg">{{msg}}</p>
+    {% endfor %}
+    </div>
+    <form method="post" action="/validador/#msg">
+        <div id="submit">
+            <input type="submit" value="Validar">
+        </div>
+        <div class="textarea">
+            <label><input type="radio" name="is_xml" value="yes" checked>XML</label>
+            <br>
+            <textarea id="xml" name="xml">{{xml}}</textarea>
+        </div>
+        <div class="textarea">
+            <label><input type="radio" name="validator_type" value="DTD" {% if validator_type == "DTD": %} checked {% endif %}>DTD</label>
+            <label><input type="radio" name="validator_type" value="XSD" {% if validator_type == "XSD": %} checked {% endif %}>XSD</label>
+            <br>
+            <textarea id="validator" name="validator">{{validator}}</textarea>
+        </div>
+        <div id="submit">
+            <input type="submit" value="Validar">
+        </div>
+    </form>
+    <script type="text/javascript">
+        var xml_editor = CodeMirror.fromTextArea(document.getElementById('xml'), {
+            mode: "application/xml",
+            lineNumbers: true,
+            theme: 'eclipse',
+        });
+        xml_editor.setSize("100%", 500);
+
+        var validator_editor = CodeMirror.fromTextArea(document.getElementById('validator'), {
+            mode: "application/xml",
+            lineNumbers: true,
+            theme: 'eclipse',
+        });
+        validator_editor.setSize("100%", 500);
+    </script>
+</body>
+
+</html>

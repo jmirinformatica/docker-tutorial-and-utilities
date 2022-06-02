@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="cat">
+<head>
+    <meta charset="UTF-8">
+    <title>Request DUMP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+        }
+        body {
+            background-color: beige;
+        }
+        dl {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        dt {
+            font-weight: bold;
+            background-color: peachpuff;
+            margin-top: 10px;
+        }
+        dd {
+            margin-left: 10px;
+            margin-top: 2px;
+        }
+        section {
+            border: 1px solid orangered;
+            margin-top: 20px;
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Request DUMP</h1>
+    </header>
+    <article>
+        {{sections|safe}}
+    </article>
+</body>
+</html>
